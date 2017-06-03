@@ -1,0 +1,26 @@
+http://localhost:57078/odata/Contacts
+
+#Projection
+http://localhost:57078/odata/Contacts?$select=Id,FirstName,LastName
+http://localhost:57078/odata/Contacts?$select=Id,Email
+http://localhost:57078/odata/Contacts?$select=Id,Address
+
+#Filtering
+http://localhost:57078/odata/Contacts?$filter=Id eq 2
+http://localhost:57078/odata/Contacts?$filter=Id eq 2 or Id eq 4
+http://localhost:57078/odata/Contacts?$filter=Id ne 2 or Id ne 4
+http://localhost:57078/odata/Contacts?$filter=startswith(LastName, 'St')
+
+#Sorting
+http://localhost:57078/odata/Contacts?$orderby=Id desc
+
+#Paging
+http://localhost:57078/odata/Contacts?$top=2&$skip=5
+
+#Functions
+http://localhost:57078/odata/Contacts/ContactsService.Oldest()
+http://localhost:57078/odata/Contacts/ContactsService.OlderThan(age=42)
+
+#Metadata
+http://localhost:57078/odata?$metadata
+http://localhost:57078/odata/$metadata
