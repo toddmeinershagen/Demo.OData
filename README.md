@@ -1,2 +1,2 @@
 # Demo.OData
- demonstration of OData v4 in web api, c#
+ A demonstration of OData v4 in web api, c#
