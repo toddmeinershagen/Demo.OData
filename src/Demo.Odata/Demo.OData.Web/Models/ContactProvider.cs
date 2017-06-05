@@ -8,7 +8,7 @@ namespace Demo.OData.Web.Models
     {
         public IQueryable<Contact> GetContacts()
         {
-            var path = Path.Combine(@"C:\Users\todd\Documents\Visual Studio 2017\Projects\Demo.Odata\Demo.OData.Web", "mock-contact-data.json");
+            var path = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/"), "mock-contact-data.json");
             var json = File.ReadAllText(path);
 
             return JsonConvert.DeserializeObject<ContactData[]>(json).Select(x => 
