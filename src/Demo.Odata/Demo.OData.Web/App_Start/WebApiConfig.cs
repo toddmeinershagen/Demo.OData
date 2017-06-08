@@ -4,6 +4,8 @@ using System.Web.Http;
 using System.Web.OData.Extensions;
 using System.Web.OData.Builder;
 using System.Web.OData.Batch;
+using Swashbuckle.Application;
+using Swashbuckle.OData;
 
 namespace Demo.OData.Web
 {
@@ -26,7 +28,8 @@ namespace Demo.OData.Web
 
             var contactsResource = "Contacts";
             builder.EntitySet<Contact>(contactsResource);
-            builder.Namespace = "ContactsService";
+            builder.EntitySet<BasicContact>("Basic" + contactsResource);
+
             builder
                 .EntityType<Contact>()
                 .Collection
@@ -48,16 +51,32 @@ namespace Demo.OData.Web
                 .Select()
                 .MaxTop(null);
 
+            var odataBatchHandler = new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer);
+            odataBatchHandler.MessageQuotas.MaxOperationsPerChangeset = 10;
+            odataBatchHandler.MessageQuotas.MaxPartsPerBatch = 10;
+
             config.MapODataServiceRoute(
                 routeName: "odata",
                 routePrefix: "odata",
-                model: builder.GetEdmModel());
+                model: builder.GetEdmModel(),
+                batchHandler: odataBatchHandler);
+
+            config.EnableSwagger(c =>
+                {
+                    c.SingleApiVersion("v1", "Contacts OData Endpoint");
+                    c.CustomProvider(defaultProvider => new ODataSwaggerProvider(defaultProvider, c,
+                        GlobalConfiguration.Configuration));
+                })
+                .EnableSwaggerUi();
+            
+
+            //config.MapODataServiceRoute(
+            //    routeName: "odata",
+            //    routePrefix: "odata",
+            //    model: builder.GetEdmModel());
         }
     }
 }
-
-
-
 
 
 

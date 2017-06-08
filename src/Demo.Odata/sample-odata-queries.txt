@@ -8,7 +8,7 @@ http://localhost:57078/odata/Contacts?$select=Id,Address
 #Filtering
 http://localhost:57078/odata/Contacts?$filter=Id eq 2
 http://localhost:57078/odata/Contacts?$filter=Id eq 2 or Id eq 4
-http://localhost:57078/odata/Contacts?$filter=Id ne 2 or Id ne 4
+http://localhost:57078/odata/Contacts?$filter=Id ne 2 and Id ne 4
 http://localhost:57078/odata/Contacts?$filter=startswith(LastName, 'St')
 
 #Sorting
@@ -18,8 +18,80 @@ http://localhost:57078/odata/Contacts?$orderby=Id desc
 http://localhost:57078/odata/Contacts?$top=2&$skip=5
 
 #Functions
-http://localhost:57078/odata/Contacts/ContactsService.Oldest()
-http://localhost:57078/odata/Contacts/ContactsService.OlderThan(age=42)
+http://localhost:57078/odata/Contacts/Default.Oldest()
+http://localhost:57078/odata/Contacts/Default.OlderThan(age=42)
+
+#Batch
+POST /odata/$batch HTTP/1.1
+Host: localhost:57078
+Accept: multipart/mixed
+prefer: odata.continue-on-error
+Content-Type: multipart/mixed; boundary=batch_d3bcb804-ee77-4921-9a45-761f98d32029
+Expect: 100-continue
+Connection: Keep-Alive
+Cache-Control: no-cache
+Postman-Token: d98b2947-08c3-9489-8759-3d1b0ae37c0f
+
+--batch_d3bcb804-ee77-4921-9a45-761f98d32029
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+
+GET http://localhost:57078/odata/Contacts?$filter=Id eq 2 HTTP/1.1
+OData-Version: 4.0
+OData-MaxVersion: 4.0
+Accept: application/json;odata.metadata=minimal
+Accept-Charset: UTF-8
+User-Agent: Microsoft ADO.NET Data Services
+
+--batch_d3bcb804-ee77-4921-9a45-761f98d32029
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+
+GET http://localhost:57078/odata/Contacts/Default.Oldest() HTTP/1.1
+OData-Version: 4.0
+OData-MaxVersion: 4.0
+Accept: application/json;odata.metadata=minimal
+Accept-Charset: UTF-8
+User-Agent: Microsoft ADO.NET Data Services
+
+--batch_d3bcb804-ee77-4921-9a45-761f98d32029--
+
+
+POST /odata/$batch HTTP/1.1
+Host: localhost:57078
+Accept: multipart/mixed
+prefer: odata.continue-on-error
+Content-Type: multipart/mixed; boundary=batch_d3bcb804-ee77-4921-9a45-761f98d32029
+Expect: 100-continue
+Connection: Keep-Alive
+Cache-Control: no-cache
+Postman-Token: cf13d081-09ff-66b6-bfdc-008596162148
+
+--batch_d3bcb804-ee77-4921-9a45-761f98d32029
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+
+GET http://localhost:57078/odata/BasicContacts?$filter=Id eq 2 HTTP/1.1
+OData-Version: 4.0
+OData-MaxVersion: 4.0
+Accept: application/json;odata.metadata=minimal
+Accept-Charset: UTF-8
+User-Agent: Microsoft ADO.NET Data Services
+
+--batch_d3bcb804-ee77-4921-9a45-761f98d32029
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+
+GET http://localhost:57078/odata/Contacts/Default.OlderThan(age=44) HTTP/1.1
+OData-Version: 4.0
+OData-MaxVersion: 4.0
+Accept: application/json;odata.metadata=minimal
+Accept-Charset: UTF-8
+User-Agent: Microsoft ADO.NET Data Services
+
+--batch_d3bcb804-ee77-4921-9a45-761f98d32029--
+
+
 
 #Metadata
 http://localhost:57078/odata?$metadata
