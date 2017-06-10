@@ -16,7 +16,7 @@ namespace Demo.OData.Web
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
-            routes.Add(new ServiceRoute(nameof(ContactsService), new ServiceHostFactory(), typeof(ContactsService)));
+            //routes.Add(new ServiceRoute("", new ServiceHostFactory(), typeof(ContactsService)));
         }
     }
 }

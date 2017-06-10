@@ -7,7 +7,7 @@ using Demo.OData.Web.Models;
 namespace Demo.OData.Web
 {
     [ServiceContract]
-    public class ContactsService
+    public class ContactsService : IContactsService
     {
         [OperationContract]
         public Contact GetContact(int id)
