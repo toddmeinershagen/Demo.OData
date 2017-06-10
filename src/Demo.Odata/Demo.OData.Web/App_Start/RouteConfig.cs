@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.ServiceModel.Activation;
+using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace Demo.OData.Web
@@ -14,6 +15,8 @@ namespace Demo.OData.Web
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.Add(new ServiceRoute(nameof(ContactsService), new ServiceHostFactory(), typeof(ContactsService)));
         }
     }
 }
