@@ -227,6 +227,7 @@
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\CustomSelectExpandValidator.cs" />
     <Compile Include="Controllers\DateTimeExtensions.cs" />
+    <Compile Include="Controllers\EAlertsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -240,6 +241,7 @@
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\ContactData.cs" />
     <Compile Include="Models\ContactProvider.cs" />
+    <Compile Include="Models\EAlertProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -278,6 +280,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="mock-contact-data.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mock-ealert-data.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

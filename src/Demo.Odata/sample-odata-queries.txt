@@ -10,6 +10,8 @@ http://localhost:57078/odata/Contacts?$filter=Id eq 2
 http://localhost:57078/odata/Contacts?$filter=Id eq 2 or Id eq 4
 http://localhost:57078/odata/Contacts?$filter=Id ne 2 and Id ne 4
 http://localhost:57078/odata/Contacts?$filter=startswith(LastName, 'St')
+http://localhost:57078/odata/EAlerts?$filter=Entity eq 'HCPCS' and ChangeDate gt 2017-01-04T00:00:00z
+http://localhost:57078/odata/EAlerts?$filter=Entity eq 'ICD10' and ChangeType eq 'Change'
 
 #Sorting
 http://localhost:57078/odata/Contacts?$orderby=Id desc
