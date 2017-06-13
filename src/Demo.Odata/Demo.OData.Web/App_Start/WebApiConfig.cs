@@ -46,7 +46,6 @@ namespace Demo.OData.Web
             var claimsResource = "Claims";
             builder.EntitySet<Claim>(claimsResource);
 
-            /*
             builder
                 .EntityType<Claim>()
                 .Collection
@@ -61,7 +60,6 @@ namespace Demo.OData.Web
                 .Action("SearchByCriteriaAction")
                 .ReturnsCollectionFromEntitySet<Claim>(claimsResource)
                 .Parameter<ClaimsCriteria>("criteria");
-            */
 
             var ealertsResource = nameof(EAlert) + "s";
             builder.EntitySet<EAlert>(ealertsResource);
