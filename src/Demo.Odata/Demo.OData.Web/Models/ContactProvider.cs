@@ -1,6 +1,10 @@
 ﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Demo.OData.Web.Models
 {
@@ -25,7 +29,7 @@ namespace Demo.OData.Web.Models
                         State = x.State,
                         PostalCode = x.PostalCode
                     }
-                }).AsQueryable<Contact>();
+                }).AsQueryable();
         }
     }
 }

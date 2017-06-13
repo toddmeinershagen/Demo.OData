@@ -92,6 +92,40 @@ User-Agent: Microsoft ADO.NET Data Services
 --batch_d3bcb804-ee77-4921-9a45-761f98d32029--
 
 
+#Function with Complex Parameter
+GET /odata/Claims/Default.SearchByCriteriaFunction(criteria=@x)?@x=%7B%22Type%22%3A%22UB04%22%2C%22FromDate%22%3A%222017-01-01%22%2C%22ThruDate%22%3A%222017-12-31%22%7D HTTP/1.1
+Host: localhost:57078
+OData-Version: 4.0
+OData-MaxVersion: 4.0
+Accept: application/json;odata.metadata=minimal
+Accept-Charset: UTF-8
+Cache-Control: no-cache
+Postman-Token: 971759be-3c50-7c34-0a44-e98e1ede930a
+
+
+#Action with Complex Parameter
+POST /odata/Claims/Default.SearchByCriteriaAction HTTP/1.1
+Host: localhost:57078
+Content-Type: application/json
+Accept: application/json
+Cache-Control: no-cache
+Postman-Token: 1598b4bc-921a-6ca4-a194-b3ba2b53a6bf
+
+{
+	"criteria":{"Type":"UB04","FromDate":"2017-01-01","ThruDate":"2017-12-31"}
+}
+
+
+
+POST /odata/Claims/SearchByCriteria HTTP/1.1
+Host: localhost:57078
+Accept: application/json
+Content-Type: application/json
+Cache-Control: no-cache
+Postman-Token: 8fa43df3-3421-06cf-7b80-fa1e28eb1d5e
+
+{"Type":"UB04","FromDate":"2017-01-01","ThruDate":"2017-12-31"}
+
 
 #Metadata
 http://localhost:57078/odata?$metadata

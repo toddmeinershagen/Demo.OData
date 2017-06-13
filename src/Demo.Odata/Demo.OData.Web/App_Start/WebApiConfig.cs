@@ -43,6 +43,26 @@ namespace Demo.OData.Web
                 .ReturnsCollectionFromEntitySet<Contact>(contactsResource)
                 .Parameter<int>("age");
 
+            var claimsResource = "Claims";
+            builder.EntitySet<Claim>(claimsResource);
+
+            /*
+            builder
+                .EntityType<Claim>()
+                .Collection
+                .Function("SearchByCriteriaFunction")
+                .ReturnsCollectionFromEntitySet<Claim>(claimsResource)
+                .Parameter<ClaimsCriteria>("criteria");
+                //.Parameter<ClaimType>("type");
+
+            builder
+                .EntityType<Claim>()
+                .Collection
+                .Action("SearchByCriteriaAction")
+                .ReturnsCollectionFromEntitySet<Claim>(claimsResource)
+                .Parameter<ClaimsCriteria>("criteria");
+                */
+
             config
                 .Count()
                 .Filter()
@@ -63,7 +83,7 @@ namespace Demo.OData.Web
 
             config.EnableSwagger(c =>
                 {
-                    c.SingleApiVersion("v1", "Contacts OData Endpoint");
+                    c.SingleApiVersion("v1", "OData Endpoint");
                     c.CustomProvider(defaultProvider => new ODataSwaggerProvider(defaultProvider, c,
                         GlobalConfiguration.Configuration));
                 })
