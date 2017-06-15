@@ -1,8 +1,7 @@
-﻿using System.Linq;
+﻿using Demo.OData.Web.Models;
+using System.Linq;
 using System.Web.OData;
-
-using Demo.OData.Web.Models;
-using System.Web.Http.OData.Query;
+using System.Web.OData.Query;
 
 namespace Demo.OData.Web.Controllers
 {

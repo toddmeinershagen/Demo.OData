@@ -1,9 +1,8 @@
 ﻿using Demo.OData.Web.Models;
-
 using System.Web.Http;
-using System.Web.OData.Extensions;
-using System.Web.OData.Builder;
 using System.Web.OData.Batch;
+using System.Web.OData.Builder;
+using System.Web.OData.Extensions;
 using Swashbuckle.Application;
 using Swashbuckle.OData;
 
@@ -13,7 +12,7 @@ namespace Demo.OData.Web
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services            
+            // Web API configuration and services
 
             // Web API routes
             config.MapHttpAttributeRoutes();
@@ -24,11 +23,10 @@ namespace Demo.OData.Web
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            ODataModelBuilder builder = new ODataConventionModelBuilder();
+            var builder = new ODataConventionModelBuilder();
 
-            var contactsResource = "Contacts";
+            var contactsResource = $"{nameof(Contact)}s";
             builder.EntitySet<Contact>(contactsResource);
-            builder.EntitySet<BasicContact>("Basic" + contactsResource);
 
             builder
                 .EntityType<Contact>()
@@ -43,16 +41,20 @@ namespace Demo.OData.Web
                 .ReturnsCollectionFromEntitySet<Contact>(contactsResource)
                 .Parameter<int>("age");
 
-            var claimsResource = "Claims";
-            builder.EntitySet<Claim>(claimsResource);
+            builder.EntitySet<BasicContact>("Basic" + contactsResource);
 
+            var claimsResource = $"{nameof(Claim)}s";
+            builder.EntitySet<Claim>(claimsResource);
+            builder.ComplexType<ClaimsCriteria>();
+
+            /*TODO:  I had to comment this out to get the Swagger to work.
             builder
                 .EntityType<Claim>()
                 .Collection
                 .Function("SearchByCriteriaFunction")
                 .ReturnsCollectionFromEntitySet<Claim>(claimsResource)
                 .Parameter<ClaimsCriteria>("criteria");
-                //.Parameter<ClaimType>("type");
+            */    
 
             builder
                 .EntityType<Claim>()
@@ -61,7 +63,7 @@ namespace Demo.OData.Web
                 .ReturnsCollectionFromEntitySet<Claim>(claimsResource)
                 .Parameter<ClaimsCriteria>("criteria");
 
-            var ealertsResource = nameof(EAlert) + "s";
+            var ealertsResource = $"{nameof(EAlert)}s";
             builder.EntitySet<EAlert>(ealertsResource);
 
             config
@@ -84,31 +86,18 @@ namespace Demo.OData.Web
 
             config.EnableSwagger(c =>
                 {
-                    c.SingleApiVersion("v1", "OData Endpoint");
+                    c.SingleApiVersion("v1", "OData Endpoint")
+                        .Contact(contactBuilder => contactBuilder
+                            .Url("https://github.com/toddmeinershagen/demo.odata"));
+
+                    c.GroupActionsBy(apiDesc => apiDesc.ActionDescriptor.ControllerDescriptor.ControllerName.ToString());
+
+                    c.DescribeAllEnumsAsStrings();
+
                     c.CustomProvider(defaultProvider => new ODataSwaggerProvider(defaultProvider, c,
                         GlobalConfiguration.Configuration));
                 })
                 .EnableSwaggerUi();
-            
-
-            //config.MapODataServiceRoute(
-            //    routeName: "odata",
-            //    routePrefix: "odata",
-            //    model: builder.GetEdmModel());
         }
     }
 }
-
-
-
-/*
-    var odataBatchHandler = new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer);
-    odataBatchHandler.MessageQuotas.MaxOperationsPerChangeset = 10;
-    odataBatchHandler.MessageQuotas.MaxPartsPerBatch = 10;
-
-    config.MapODataServiceRoute(
-        routeName: "odata",
-        routePrefix: "odata",
-        model: builder.GetEdmModel(),
-        batchHandler: odataBatchHandler);
-*/

@@ -15,4 +15,3 @@ namespace Demo.OData.Web.Models
         }
     }
 }
-

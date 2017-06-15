@@ -1,0 +1,332 @@
+{
+	"variables": [],
+	"info": {
+		"name": "OData Queries",
+		"_postman_id": "7babb50f-a00e-3669-17c7-db59b5f04428",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "EAlerts - Filtering 1",
+			"request": {
+				"url": {
+					"raw": "http://localhost:57078/odata/EAlerts?$filter=Entity eq 'HCPCS' and ChangeDate gt 2017-01-04T00:00:00z",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "57078",
+					"path": [
+						"odata",
+						"EAlerts"
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "Entity eq 'HCPCS' and ChangeDate gt 2017-01-04T00:00:00z",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "2c89ec59932748fea2b407ef17930123",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"getEAlert\": {\n\t\t\"request\": {\n\t\t\t\"lookups\": [\n\t\t\t\t{\n\t\t\t\t\t\"dataset\": \"HCPCS\",\n\t\t\t\t\t\"effectiveDate\": \"2017-01-01\"\n\t\t\t\t}]\n\t\t}\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "EAlerts - Filtering 2",
+			"request": {
+				"url": {
+					"raw": "http://localhost:57078/odata/EAlerts?$filter=Entity eq 'ICD10' and ChangeType eq 'Change'",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "57078",
+					"path": [
+						"odata",
+						"EAlerts"
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "Entity eq 'ICD10' and ChangeType eq 'Change'",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "2c89ec59932748fea2b407ef17930123",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"getEAlert\": {\n\t\t\"request\": {\n\t\t\t\"lookups\": [\n\t\t\t\t{\n\t\t\t\t\t\"dataset\": \"HCPCS\",\n\t\t\t\t\t\"effectiveDate\": \"2017-01-01\"\n\t\t\t\t}]\n\t\t}\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "EAlerts - Batch",
+			"request": {
+				"url": "http://localhost:57078/odata/$batch",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "multipart/mixed",
+						"description": ""
+					},
+					{
+						"key": "prefer",
+						"value": "odata.continue-on-error",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "multipart/mixed; boundary=batch_d3bcb804-ee77-4921-9a45-761f98d32029",
+						"description": ""
+					},
+					{
+						"key": "Expect",
+						"value": "100-continue",
+						"description": ""
+					},
+					{
+						"key": "Connection",
+						"value": "Keep-Alive",
+						"description": ""
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "--batch_d3bcb804-ee77-4921-9a45-761f98d32029\r\nContent-Type: application/http\r\nContent-Transfer-Encoding: binary\r\n\r\nGET http://localhost:57078/odata/EAlerts?$filter=Entity eq 'HCPCS' and ChangeDate gt 2017-01-04T00:00:00z HTTP/1.1\r\nOData-Version: 4.0\r\nOData-MaxVersion: 4.0\r\nAccept: application/json;odata.metadata=minimal\r\nAccept-Charset: UTF-8\r\nUser-Agent: Microsoft ADO.NET Data Services\r\n\r\n--batch_d3bcb804-ee77-4921-9a45-761f98d32029\r\nContent-Type: application/http\r\nContent-Transfer-Encoding: binary\r\n\r\nGET http://localhost:57078/odata/EAlerts?$filter=Entity eq 'ICD10' and ChangeType eq 'Change' HTTP/1.1\r\nOData-Version: 4.0\r\nOData-MaxVersion: 4.0\r\nAccept: application/json;odata.metadata=minimal\r\nAccept-Charset: UTF-8\r\nUser-Agent: Microsoft ADO.NET Data Services\r\n\r\n--batch_d3bcb804-ee77-4921-9a45-761f98d32029--"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Contacts - Batch",
+			"request": {
+				"url": "http://localhost:57078/odata/$batch",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "multipart/mixed",
+						"description": ""
+					},
+					{
+						"key": "prefer",
+						"value": "odata.continue-on-error",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "multipart/mixed; boundary=batch_d3bcb804-ee77-4921-9a45-761f98d32029",
+						"description": ""
+					},
+					{
+						"key": "Expect",
+						"value": "100-continue",
+						"description": ""
+					},
+					{
+						"key": "Connection",
+						"value": "Keep-Alive",
+						"description": ""
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "--batch_d3bcb804-ee77-4921-9a45-761f98d32029\r\nContent-Type: application/http\r\nContent-Transfer-Encoding: binary\r\n\r\nGET http://localhost:57078/odata/Contacts?$filter=Id eq 2 HTTP/1.1\r\nOData-Version: 4.0\r\nOData-MaxVersion: 4.0\r\nAccept: application/json;odata.metadata=minimal\r\nAccept-Charset: UTF-8\r\nUser-Agent: Microsoft ADO.NET Data Services\r\n\r\n--batch_d3bcb804-ee77-4921-9a45-761f98d32029\r\nContent-Type: application/http\r\nContent-Transfer-Encoding: binary\r\n\r\nGET http://localhost:57078/odata/Contacts/Default.Oldest() HTTP/1.1\r\nOData-Version: 4.0\r\nOData-MaxVersion: 4.0\r\nAccept: application/json;odata.metadata=minimal\r\nAccept-Charset: UTF-8\r\nUser-Agent: Microsoft ADO.NET Data Services\r\n\r\n--batch_d3bcb804-ee77-4921-9a45-761f98d32029--"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Function - OData",
+			"request": {
+				"url": {
+					"raw": "http://localhost:57078/odata/Claims/Default.SearchByCriteriaFunction(criteria=@x)?@x=%7B%22Type%22%3A%22UB04%22%2C%22FromDate%22%3A%222017-01-01%22%2C%22ThruDate%22%3A%222017-12-31%22%7D",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "57078",
+					"path": [
+						"odata",
+						"Claims",
+						"Default.SearchByCriteriaFunction(criteria=@x)"
+					],
+					"query": [
+						{
+							"key": "@x",
+							"value": "%7B%22Type%22%3A%22UB04%22%2C%22FromDate%22%3A%222017-01-01%22%2C%22ThruDate%22%3A%222017-12-31%22%7D",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "OData-Version",
+						"value": "4.0",
+						"description": ""
+					},
+					{
+						"key": "OData-MaxVersion",
+						"value": "4.0",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json;odata.metadata=minimal",
+						"description": ""
+					},
+					{
+						"key": "Accept-Charset",
+						"value": "UTF-8",
+						"description": ""
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Action - OData",
+			"request": {
+				"url": "http://localhost:57078/odata/Claims/Default.SearchByCriteriaAction",
+				"method": "POST",
+				"header": [
+					{
+						"key": "OData-Version",
+						"value": "4.0",
+						"description": ""
+					},
+					{
+						"key": "OData-MaxVersion",
+						"value": "4.0",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json;odata.metadata=minimal",
+						"description": ""
+					},
+					{
+						"key": "Accept-Charset",
+						"value": "UTF-8",
+						"description": ""
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"criteria\":{\"Type\":\"UB04\",\"FromDate\":\"2017-01-01\",\"ThruDate\":\"2017-12-31\"}\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Action - Web Api",
+			"request": {
+				"url": "http://localhost:57078/odata/Claims/SearchByCriteria",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Accept-Charset",
+						"value": "UTF-8",
+						"description": ""
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"Type\":\"UB04\",\"FromDate\":\"2017-01-01\",\"ThruDate\":\"2017-12-31\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

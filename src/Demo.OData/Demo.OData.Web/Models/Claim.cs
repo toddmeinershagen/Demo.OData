@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Demo.OData.Web.Models
 {
-    public class ClaimCheck
-    {
-        public List<Claim> Claims { get; set; }
-    }
-
     public class Claim
     {
         public int Id { get; set; }

@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace Demo.OData.Web.Controllers
 {
     public static class DateTimeExtensions
@@ -14,5 +13,4 @@ namespace Demo.OData.Web.Controllers
             return age;
         }
     }
-
 }

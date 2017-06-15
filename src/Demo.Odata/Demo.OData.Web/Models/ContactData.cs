@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 namespace Demo.OData.Web.Models
 {
@@ -17,4 +16,3 @@ namespace Demo.OData.Web.Models
         public string PostalCode { get; set; }
     }
 }
-
