@@ -23,10 +23,19 @@ namespace Demo.OData.Web
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            config
+                .Count()
+                .Filter()
+                .OrderBy()
+                .Expand()
+                .Select()
+                .MaxTop(null);
+
             var builder = new ODataConventionModelBuilder();
 
             var contactsResource = $"{nameof(Contact)}s";
             builder.EntitySet<Contact>(contactsResource);
+            builder.EntitySet<BasicContact>($"Basic{contactsResource}");
 
             builder
                 .EntityType<Contact>()
@@ -41,20 +50,12 @@ namespace Demo.OData.Web
                 .ReturnsCollectionFromEntitySet<Contact>(contactsResource)
                 .Parameter<int>("age");
 
-            builder.EntitySet<BasicContact>("Basic" + contactsResource);
+            var ealertsResource = $"{nameof(EAlert)}s";
+            builder.EntitySet<EAlert>(ealertsResource);
 
             var claimsResource = $"{nameof(Claim)}s";
             builder.EntitySet<Claim>(claimsResource);
             builder.ComplexType<ClaimsCriteria>();
-
-            /*TODO:  I had to comment this out to get the Swagger to work.
-            builder
-                .EntityType<Claim>()
-                .Collection
-                .Function("SearchByCriteriaFunction")
-                .ReturnsCollectionFromEntitySet<Claim>(claimsResource)
-                .Parameter<ClaimsCriteria>("criteria");
-            */    
 
             builder
                 .EntityType<Claim>()
@@ -63,16 +64,14 @@ namespace Demo.OData.Web
                 .ReturnsCollectionFromEntitySet<Claim>(claimsResource)
                 .Parameter<ClaimsCriteria>("criteria");
 
-            var ealertsResource = $"{nameof(EAlert)}s";
-            builder.EntitySet<EAlert>(ealertsResource);
-
-            config
-                .Count()
-                .Filter()
-                .OrderBy()
-                .Expand()
-                .Select()
-                .MaxTop(null);
+            /*TODO:  I had to comment this out to get the Swagger to work.
+            builder
+                .EntityType<Claim>()
+                .Collection
+                .Function("SearchByCriteriaFunction")
+                .ReturnsCollectionFromEntitySet<Claim>(claimsResource)
+                .Parameter<ClaimsCriteria>("criteria");
+            */
 
             var odataBatchHandler = new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer);
             odataBatchHandler.MessageQuotas.MaxOperationsPerChangeset = 10;
