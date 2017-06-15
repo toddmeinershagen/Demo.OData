@@ -1,0 +1,255 @@
+﻿[
+    {
+      "Type": "UB04",
+      "Id": 1,
+      "ClaimNumber": "1234567890",
+      "TypeOfBill": "Outpatient",
+      "FromDate": "2008-01-01",
+      "ThruDate": "2008-01-01",
+      "Patient": {
+        "DateOfBirth": "2001-01-01",
+        "Gender": "Female"
+      },
+      "Payer": {
+        "Id": "1",
+        "Name": "Primary Payer",
+        "Type": "A",
+        "ContractorId": 39,
+        "State": "WA"
+      },
+      "RevLineItems": [
+        {
+          "Id": 1,
+          "RevenueCode": "0360",
+          "HCPCSCode": "71010",
+          "Modifiers": [
+          {
+            "Id": 1,
+            "Code": "LT"
+          }],
+          "DateOfService": "2008-01-01",
+          "Units": 1,
+          "TotalCharges": 20.0,
+          "NonCoveredCharges": 200.00
+        },
+        {
+          "Id": 2,
+          "RevenueCode": "0320",
+          "HCPCSCode": "71020",
+          "Modifiers": [
+          {
+            "Id": 1,
+            "Code": "26"
+          }],
+          "DateOfService": "2008-01-01",
+          "Units": 1,
+          "TotalCharges": 20.0,
+          "NonCoveredCharges": 200.00
+        },
+        {
+          "Id": 3,
+          "RevenueCode": "0320",
+          "HCPCSCode": "J0885",
+          "Modifiers": [
+          {
+            "Id": 1,
+            "Code": "26"
+          }],
+          "DateOfService": "2008-01-01",
+          "Units": 1,
+          "TotalCharges": 20.0,
+          "NonCoveredCharges": 200.00
+        },
+        {
+          "Id": 4,
+          "RevenueCode": "0320",
+          "HCPCSCode": "49495",
+          "Modifiers": [
+          {
+            "Id": 1,
+            "Code": "26"
+          }],
+          "DateOfService": "2008-01-01",
+          "Units": 1,
+          "TotalCharges": 20.0,
+          "NonCoveredCharges": 200.00
+        },
+        {
+          "Id": 5,
+          "RevenueCode": "0320",
+          "HCPCSCode": "58542",
+          "Modifiers": [
+          {
+            "Id": 1,
+            "Code": "26"
+          }],
+          "DateOfService": "2008-01-01",
+          "Units": 1,
+          "TotalCharges": 20.0,
+          "NonCoveredCharges": 200.00
+        },
+        {
+          "Id": 6,
+          "RevenueCode": "0320",
+          "HCPCSCode": "99201",
+          "Modifiers": [
+          {
+            "Id": 1,
+            "Code": "26"
+          }],
+          "DateOfService": "2008-01-01",
+          "Units": 1,
+          "TotalCharges": 20.0,
+          "NonCoveredCharges": 200.00
+        },
+        {
+          "Id": 7,
+          "RevenueCode": "0320",
+          "HCPCSCode": "77079",
+          "Modifiers": [
+          {
+            "Id": 1,
+            "Code": "26"
+          }],
+          "DateOfService": "2008-01-01",
+          "Units": 1,
+          "TotalCharges": 20.0,
+          "NonCoveredCharges": 200.00
+        },
+        {
+          "Id": 8,
+          "RevenueCode": "0320",
+          "HCPCSCode": "99241",
+          "Modifiers": [
+          {
+            "Id": 1,
+            "Code": "26"
+          }],
+          "DateOfService": "2008-01-01",
+          "Units": 1,
+          "TotalCharges": 20.0,
+          "NonCoveredCharges": 200.00
+        },
+        {
+          "Id": 9,
+          "RevenueCode": "0320",
+          "HCPCSCode": "22226",
+          "Modifiers": [
+          {
+            "Id": 1,
+            "Code": "26"
+          }],
+          "DateOfService": "2008-01-01",
+          "Units": 1,
+          "TotalCharges": 20.0,
+          "NonCoveredCharges": 200.00
+        },
+        {
+          "Id": 10,
+          "RevenueCode": "0320",
+          "HCPCSCode": "22226",
+          "Modifiers": [
+          {
+            "Id": 1,
+            "Code": "26"
+          }],
+          "DateOfService": "2008-01-01",
+          "Units": 1,
+          "TotalCharges": 20.0,
+          "NonCoveredCharges": 200.00
+        },
+        {
+          "Id": 11,
+          "RevenueCode": "0320",
+          "HCPCSCode": "22226",
+          "Modifiers": [
+          {
+            "Id": 1,
+            "Code": "26"
+          }],
+          "DateOfService": "2008-01-01",
+          "Units": 1,
+          "TotalCharges": 20.0,
+          "NonCoveredCharges": 200.00
+        },
+        {
+          "Id": 12,
+          "RevenueCode": "0320",
+          "HCPCSCode": "22226",
+          "Modifiers": [
+          {
+            "Id": 1,
+            "Code": "26"
+          }],
+          "DateOfService": "2008-01-01",
+          "Units": 1,
+          "TotalCharges": 20.0,
+          "NonCoveredCharges": 200.00
+        },
+        {
+          "Id": 13,
+          "RevenueCode": "0320",
+          "HCPCSCode": "22226",
+          "Modifiers": [
+          {
+            "Id": 1,
+            "Code": "26"
+          }],
+          "DateOfService": "2008-01-01",
+          "Units": 1,
+          "TotalCharges": 20.0,
+          "NonCoveredCharges": 200.00
+        },
+        {
+          "Id": 14,
+          "RevenueCode": "0360",
+          "HCPCSCode": "71010",
+          "Modifiers": [
+          {
+            "Id": 1,
+            "Code": "LT"
+          }],
+          "DateOfService": "2008-01-01",
+          "Units": 1,
+          "TotalCharges": 20.0,
+          "NonCoveredCharges": 200.00
+        },
+        {
+          "Id": 15,
+          "RevenueCode": "0360",
+          "HCPCSCode": "71010",
+          "Modifiers": [
+          {
+            "Id": 1,
+            "Code": "LT"
+          }],
+          "DateOfService": "2008-01-01",
+          "Units": 1,
+          "TotalCharges": 20.0,
+          "NonCoveredCharges": 200.00
+        }
+      ],
+      "Diagnosis": [
+        {
+          "IsPrimary": "true",
+          "Id": 1,
+          "Code": "289.83"
+        },
+        {
+          "IsPrimary": "false",
+            "Id": 1,
+            "Code": "054.13"
+        },
+        {
+          "IsPrimary": "false",
+          "Id": 1,
+          "Code": "766.0"
+        },
+        {
+          "IsPrimary": "false",
+          "Id": 1,
+          "Code": "187"
+        }
+      ]
+    }
+]

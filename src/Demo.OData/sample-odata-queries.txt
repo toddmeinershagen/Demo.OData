@@ -1,0 +1,134 @@
+http://localhost:57078/odata/Contacts
+
+#Projection
+http://localhost:57078/odata/Contacts?$select=Id,FirstName,LastName
+http://localhost:57078/odata/Contacts?$select=Id,Email
+http://localhost:57078/odata/Contacts?$select=Id,Address
+
+#Filtering
+http://localhost:57078/odata/Contacts?$filter=Id eq 2
+http://localhost:57078/odata/Contacts?$filter=Id eq 2 or Id eq 4
+http://localhost:57078/odata/Contacts?$filter=Id ne 2 and Id ne 4
+http://localhost:57078/odata/Contacts?$filter=startswith(LastName, 'St')
+http://localhost:57078/odata/EAlerts?$filter=Entity eq 'HCPCS' and ChangeDate gt 2017-01-04T00:00:00z
+http://localhost:57078/odata/EAlerts?$filter=Entity eq 'ICD10' and ChangeType eq 'Change'
+
+#Sorting
+http://localhost:57078/odata/Contacts?$orderby=Id desc
+
+#Paging
+http://localhost:57078/odata/Contacts?$top=2&$skip=5
+
+#Functions
+http://localhost:57078/odata/Contacts/Default.Oldest()
+http://localhost:57078/odata/Contacts/Default.OlderThan(age=42)
+
+#Batch
+POST /odata/$batch HTTP/1.1
+Host: localhost:57078
+Accept: multipart/mixed
+prefer: odata.continue-on-error
+Content-Type: multipart/mixed; boundary=batch_d3bcb804-ee77-4921-9a45-761f98d32029
+Expect: 100-continue
+Connection: Keep-Alive
+Cache-Control: no-cache
+Postman-Token: d98b2947-08c3-9489-8759-3d1b0ae37c0f
+
+--batch_d3bcb804-ee77-4921-9a45-761f98d32029
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+
+GET http://localhost:57078/odata/Contacts?$filter=Id eq 2 HTTP/1.1
+OData-Version: 4.0
+OData-MaxVersion: 4.0
+Accept: application/json;odata.metadata=minimal
+Accept-Charset: UTF-8
+User-Agent: Microsoft ADO.NET Data Services
+
+--batch_d3bcb804-ee77-4921-9a45-761f98d32029
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+
+GET http://localhost:57078/odata/Contacts/Default.Oldest() HTTP/1.1
+OData-Version: 4.0
+OData-MaxVersion: 4.0
+Accept: application/json;odata.metadata=minimal
+Accept-Charset: UTF-8
+User-Agent: Microsoft ADO.NET Data Services
+
+--batch_d3bcb804-ee77-4921-9a45-761f98d32029--
+
+
+POST /odata/$batch HTTP/1.1
+Host: localhost:57078
+Accept: multipart/mixed
+prefer: odata.continue-on-error
+Content-Type: multipart/mixed; boundary=batch_d3bcb804-ee77-4921-9a45-761f98d32029
+Expect: 100-continue
+Connection: Keep-Alive
+Cache-Control: no-cache
+Postman-Token: cf13d081-09ff-66b6-bfdc-008596162148
+
+--batch_d3bcb804-ee77-4921-9a45-761f98d32029
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+
+GET http://localhost:57078/odata/BasicContacts?$filter=Id eq 2 HTTP/1.1
+OData-Version: 4.0
+OData-MaxVersion: 4.0
+Accept: application/json;odata.metadata=minimal
+Accept-Charset: UTF-8
+User-Agent: Microsoft ADO.NET Data Services
+
+--batch_d3bcb804-ee77-4921-9a45-761f98d32029
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+
+GET http://localhost:57078/odata/Contacts/Default.OlderThan(age=44) HTTP/1.1
+OData-Version: 4.0
+OData-MaxVersion: 4.0
+Accept: application/json;odata.metadata=minimal
+Accept-Charset: UTF-8
+User-Agent: Microsoft ADO.NET Data Services
+
+--batch_d3bcb804-ee77-4921-9a45-761f98d32029--
+
+
+#Function with Complex Parameter
+GET /odata/Claims/Default.SearchByCriteriaFunction(criteria=@x)?@x=%7B%22Type%22%3A%22UB04%22%2C%22FromDate%22%3A%222017-01-01%22%2C%22ThruDate%22%3A%222017-12-31%22%7D HTTP/1.1
+Host: localhost:57078
+OData-Version: 4.0
+OData-MaxVersion: 4.0
+Accept: application/json;odata.metadata=minimal
+Accept-Charset: UTF-8
+Cache-Control: no-cache
+Postman-Token: 971759be-3c50-7c34-0a44-e98e1ede930a
+
+
+#Action with Complex Parameter
+POST /odata/Claims/Default.SearchByCriteriaAction HTTP/1.1
+Host: localhost:57078
+Content-Type: application/json
+Accept: application/json
+Cache-Control: no-cache
+Postman-Token: 1598b4bc-921a-6ca4-a194-b3ba2b53a6bf
+
+{
+	"criteria":{"Type":"UB04","FromDate":"2017-01-01","ThruDate":"2017-12-31"}
+}
+
+
+
+POST /odata/Claims/SearchByCriteria HTTP/1.1
+Host: localhost:57078
+Accept: application/json
+Content-Type: application/json
+Cache-Control: no-cache
+Postman-Token: 8fa43df3-3421-06cf-7b80-fa1e28eb1d5e
+
+{"Type":"UB04","FromDate":"2017-01-01","ThruDate":"2017-12-31"}
+
+
+#Metadata
+http://localhost:57078/odata?$metadata
+http://localhost:57078/odata/$metadata
