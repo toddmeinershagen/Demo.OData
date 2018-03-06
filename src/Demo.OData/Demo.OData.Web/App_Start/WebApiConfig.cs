@@ -19,6 +19,13 @@ namespace Demo.OData.Web
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+                name: "Swagger UI",
+                routeTemplate: "",
+                defaults: null,
+                constraints: null,
+                handler: new RedirectHandler(SwaggerDocsConfig.DefaultRootUrlResolver, "swagger/ui/index"));
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
@@ -88,7 +95,7 @@ namespace Demo.OData.Web
                 batchHandler: odataBatchHandler);
 
             config.EnableSwagger(c =>
-                {
+            {
                 c.SingleApiVersion("v1", "OData Endpoint")
                     .Contact(contactBuilder => contactBuilder
                             .Url("https://github.com/toddmeinershagen/demo.odata"));
@@ -98,8 +105,8 @@ namespace Demo.OData.Web
                     c.DescribeAllEnumsAsStrings();
 
                     c.CustomProvider(defaultProvider => new ODataSwaggerProvider(defaultProvider, c, config));
-                })
-                .EnableSwaggerUi();
+            })
+            .EnableSwaggerUi();
         }
     }
 }
