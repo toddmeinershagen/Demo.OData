@@ -3,6 +3,7 @@ using System.Web.Http;
 using System.Web.OData.Batch;
 using System.Web.OData.Builder;
 using System.Web.OData.Extensions;
+using Microservices.Health;
 using Swashbuckle.Application;
 using Swashbuckle.OData;
 
@@ -22,6 +23,9 @@ namespace Demo.OData.Web
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            var checker = new HealthCheckerBuilder().Build();
+            config.AddHealthCheck(checker);
 
             config
                 .Count()
