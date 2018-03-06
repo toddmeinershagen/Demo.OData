@@ -13,3 +13,9 @@
 		<add name="ExtensionlessUrlHandler-Integrated-4.0" path="*.*" verb="*" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />
 	</handlers>
 </system.webServer>
+
+### Adding Owin Pipeline
+
+* >install-package Microsoft.Owin.Host.SystemWeb
+* >install-package Microsoft.AspNet.WebApi.Owin
+* Add Startup.cs class to root of project

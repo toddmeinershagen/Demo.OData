@@ -85,16 +85,15 @@ namespace Demo.OData.Web
 
             config.EnableSwagger(c =>
                 {
-                    c.SingleApiVersion("v1", "OData Endpoint")
-                        .Contact(contactBuilder => contactBuilder
+                c.SingleApiVersion("v1", "OData Endpoint")
+                    .Contact(contactBuilder => contactBuilder
                             .Url("https://github.com/toddmeinershagen/demo.odata"));
 
                     c.GroupActionsBy(apiDesc => apiDesc.ActionDescriptor.ControllerDescriptor.ControllerName.ToString());
 
                     c.DescribeAllEnumsAsStrings();
 
-                    c.CustomProvider(defaultProvider => new ODataSwaggerProvider(defaultProvider, c,
-                        GlobalConfiguration.Configuration));
+                    c.CustomProvider(defaultProvider => new ODataSwaggerProvider(defaultProvider, c, config));
                 })
                 .EnableSwaggerUi();
         }
